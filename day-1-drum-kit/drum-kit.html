@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Drum Kit</title>
+        <meta name="description" content="A simple little keyboard drum kit.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="https://static.thenounproject.com/png/55426-200.png">
+        <link href="https://fonts.googleapis.com/css2?family=Oxanium&family=Trade+Winds&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./drum-kit.css">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <main>
+            <section data-key="65">
+                <div class="key">A</div>
+                <div class="drum">Clap</div>
+                <audio src="./sounds/clap.wav" type="audio/wav"></audio>
+            </section>
+            <section data-key="83">
+                <div class="key">S</div>
+                <div class="drum">Hihat</div>
+                <audio src="./sounds/hihat.wav" type="audio/wav"></audio>
+            </section>
+            <section data-key="68">
+                <div class="key">D</div>
+                <div class="drum">Kick</div>
+                <audio src="./sounds/kick.wav" type="audio/wav"></audio>
+            </section>
+            <section data-key="70">
+                <div class="key">F</div>
+                <div class="drum">Openhat</div>
+                <audio src="./sounds/openhat.wav" type="audio/wav"></audio>
+            </section>
+            <section data-key="71">
+                <div class="key">G</div>
+                <div class="drum">Boom</div>
+                <audio src="./sounds/boom.wav" type="audio/wav"></audio>
+            </section>
+            <section data-key="72">
+                <div class="key">H</div>
+                <div class="drum">Ride</div>
+                <audio src="./sounds/ride.wav" type="audio/wav"></audio>
+            </section>
+            <section data-key="74">
+                <div class="key">J</div>
+                <div class="drum">Snare</div>
+                <audio src="./sounds/snare.wav" type="audio/wav"></audio>
+            </section>
+            <section data-key="75">
+                <div class="key">K</div>
+                <div class="drum">Tom</div>
+                <audio src="./sounds/tom.wav" type="audio/wav"></audio>
+            </section>
+            <section data-key="76">
+                <div class="key">L</div>
+                <div class="drum">Tink</div>
+                <audio src="./sounds/tink.wav" type="audio/wav"></audio>
+            </section>
+        </main>
+        <script src="./drum-kit.js" async defer></script>
+    </body>
+</html>
