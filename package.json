@@ -1,0 +1,25 @@
+{
+  "name": "javascript30",
+  "version": "1.0.0",
+  "description": "30 daily challenges in Vanilla JS.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justin-dwyer/JavaScript30.git"
+  },
+  "author": "Justin Dwyer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justin-dwyer/JavaScript30/issues"
+  },
+  "homepage": "https://github.com/justin-dwyer/JavaScript30#readme",
+  "dependencies": {
+    "ejs": "^3.0.1",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2"
+  }
+}
