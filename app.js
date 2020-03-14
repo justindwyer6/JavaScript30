@@ -5,7 +5,7 @@ const app = express()
 app.use(express.static(__dirname))
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + "/day-0-index/index.html")
+    res.sendFile(`${__dirname}/day-0-index/index.html`)
 })
 
 app.get('/drums', (req, res) => {
