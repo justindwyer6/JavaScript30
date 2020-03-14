@@ -16,6 +16,10 @@ app.get('/clock', (req, res) => {
     res.sendFile(`${__dirname}/day-2-clock/clock.html`)
 })
 
+app.get('/css-variables', (req, res) => {
+    res.sendFile(`${__dirname}/day-3-css-variables/css-variables.html`)
+})
+
 let port = process.env.PORT
 port = (port == null || port == "") ? 3000 : port
 app.listen(port, () => {console.log(`Ya, I hear ya.`)})

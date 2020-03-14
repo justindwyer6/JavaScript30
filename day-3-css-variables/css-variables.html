@@ -6,19 +6,30 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Justin Dwyer's JavaScript30 Projects</title>
+        <title>CSS Variables</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="icon" href="https://pbs.twimg.com/profile_images/1194637192213061635/FE1Ti_nC_400x400.jpg">
-        <link rel="stylesheet" href="day-0-index/index.css">
+        <link rel="stylesheet" href="/day-3-css-variables/css-variables.css">
     </head>
     <body>
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <a href="/clock"></a>
-        <a href="/drums"></a>
-        <a href="/css-variables"></a>
-        <script src="" async defer></script>
+        <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+
+        <div class="controls">
+          <label for="spacing">Spacing:</label>
+          <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+          <label for="blur">Blur:</label>
+          <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+          <label for="base">Base Color</label>
+          <input id="base" type="color" name="base" value="#ffc600">
+        </div>
+
+        <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+        <script src="/day-3-css-variables/css-variables.js" async defer></script>
     </body>
 </html>
