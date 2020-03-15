@@ -1,23 +1,19 @@
 // import express from 'express'
-const express = require("express")
-const app = express()
+const express = require("express"),
+      app = express(),
+      fs = require("fs")
+
+// const files = fs.readdir(__dirname, (err, files) => {console.log(files)})
+// console.log(files)
 
 app.use(express.static(__dirname))
 
-app.get('/', (req, res) => {
-    res.sendFile(`${__dirname}/day-0-index/index.html`)
-})
+projects = [`index`, `drum-kit`, `clock`, `css-variables`, `array-cardio`]
 
-app.get('/drums', (req, res) => {
-    res.sendFile(`${__dirname}/day-1-drum-kit/drum-kit.html`)
-})
-
-app.get('/clock', (req, res) => {
-    res.sendFile(`${__dirname}/day-2-clock/clock.html`)
-})
-
-app.get('/css-variables', (req, res) => {
-    res.sendFile(`${__dirname}/day-3-css-variables/css-variables.html`)
+projects.forEach((project, day) => {
+    app.get(`/${project === "index" ? "" : project}`, (req, res) => {
+        res.sendFile(`${__dirname}/day-${day}-${project}/${project}.html`)
+    })
 })
 
 let port = process.env.PORT
