@@ -8,7 +8,7 @@ const express = require("express"),
 
 app.use(express.static(__dirname))
 
-projects = [`index`, `drum-kit`, `clock`, `css-variables`, `array-cardio`]
+projects = [`index`, `drum-kit`, `clock`, `css-variables`, `array-cardio`, `flex-panels`]
 
 projects.forEach((project, day) => {
     app.get(`/${project === "index" ? "" : project}`, (req, res) => {
