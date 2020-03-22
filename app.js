@@ -3,16 +3,15 @@ const express = require("express"),
       app = express(),
       fs = require("fs")
 
-// const files = fs.readdir(__dirname, (err, files) => {console.log(files)})
-// console.log(files)
-
 app.use(express.static(__dirname))
 
-projects = [`index`, `drum-kit`, `clock`, `css-variables`, `array-cardio`, `flex-panels`]
+const allDirectories = fs.readdirSync(__dirname)
+const dayDirectories = allDirectories.filter((directory, i) => directory.includes("day-"))
+const projectNames = dayDirectories.map((directory, i) => i.toString().length === 1 ? directory.slice(6) : directory.slice(7))
 
-projects.forEach((project, day) => {
-    app.get(`/${project === "index" ? "" : project}`, (req, res) => {
-        res.sendFile(`${__dirname}/day-${day}-${project}/${project}.html`)
+dayDirectories.forEach((project, day) => {
+    app.get(`/${projectNames[day] === "index" ? "" : projectNames[day]}`, (req, res) => {
+        res.sendFile(`${__dirname}/${project}/${projectNames[day]}.html`)
     })
 })
 

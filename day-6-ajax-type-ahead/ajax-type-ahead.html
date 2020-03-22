@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Type Ahead 👀</title>
+  <link rel="stylesheet" href="/day-6-ajax-type-ahead//style.css">
+</head>
+<body>
+
+  <form class="search-form">
+    <input type="text" class="search" placeholder="City or State">
+    <ul class="suggestions">
+      <li>Filter for a city</li>
+      <li>or a state</li>
+    </ul>
+  </form>
+<script>
+const endpoint = 'https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json'
+
+const cities = []
+
+fetch(endpoint)
+    .then(blob => blob.json())
+    .then(data => cities.push(...data))
+
+const searchForm = document.querySelector("input")
+searchForm.onkeypress = searchCities
+// searchForm.onchange = searchCities
+
+function searchCities(event) {
+    searchedCities = cities.filter(city => city.city.includes(searchForm.value))
+    const cityList = document.querySelector("UL")
+    cityList.textContent = ""
+    searchedCities.forEach(city => {
+        const newLI = document.createElement("LI")
+        const cityName = document.createTextNode(city["city"])
+        newLI.appendChild(cityName)
+        cityList.appendChild(newLI)
+    })
+    if(searchForm.value === "") {
+        const newLI = document.createElement("LI")
+        const helpText = document.createTextNode("Filter for a city")
+        newLI.appendChild(helpText)
+        cityList.appendChild(newLI)
+    }
+    // cities.forEach(city =>
+    //     {
+    //         console.log(this)
+    //         if(city["city"].includes(this.value)){
+    //             const newLI = document.createElement("LI")
+    //             cityName = document.createTextNode(city["city"])
+    //             newLI.appendChild(cityName)
+    //             document.querySelector("ul").appendChild(newLI)
+    //         }
+    //     }
+    // )
+}
+</script>
+</body>
+</html>
