@@ -6,8 +6,10 @@ const express = require("express"),
 app.use(express.static(__dirname))
 
 const allDirectories = fs.readdirSync(__dirname)
-const dayDirectories = allDirectories.filter((directory, i) => directory.includes("day-"))
-const projectNames = dayDirectories.map((directory, i) => i.toString().length === 1 ? directory.slice(6) : directory.slice(7))
+
+dayRegEx = new RegExp(/day-\d+-/)
+const dayDirectories = allDirectories.filter((directory) => directory.match(dayRegEx))
+const projectNames = dayDirectories.map((directory, i) => directory.replace(dayRegEx, ""))
 
 dayDirectories.forEach((project, day) => {
     app.get(`/${projectNames[day] === "index" ? "" : projectNames[day]}`, (req, res) => {
