@@ -23,38 +23,66 @@ fetch(endpoint)
     .then(blob => blob.json())
     .then(data => cities.push(...data))
 
-const searchForm = document.querySelector("input")
-searchForm.onkeypress = searchCities
-searchForm.onkeyup = validateSearch
-
-function searchCities(event) {
-    searchedCities = cities.filter(city => city.city.includes(searchForm.value))
-    const cityList = document.querySelector("UL")
-    cityList.textContent = ""
-    searchedCities.forEach(city => {
-        const newLI = document.createElement("LI")
-        const cityName = document.createTextNode(city["city"] + " • " + city["population"])
-        newLI.appendChild(cityName)
-        cityList.appendChild(newLI)
+function findMatches(wordToMatch, cities) {
+    return cities.filter(place => {
+        const regex = new RegExp(wordToMatch, 'gi')
+        return place.city.match(regex) || place.state.match(regex)
     })
 }
 
-function validateSearch(event) {
-    if(searchForm.value === "") {
-        for(i = 0; i < 2; i++) {
-            const cityList = document.querySelector("UL")
-            const newLI1 = document.createElement("LI")
-            const newLI2 = document.createElement("LI")
-            const helpText1 = document.createTextNode("Filter for a city")
-            const helpText2 = document.createTextNode("or a state")
-            cityList.textContent = ""
-            newLI1.appendChild(helpText1)
-            cityList.appendChild(newLI1)
-            newLI2.appendChild(helpText2)
-            cityList.appendChild(newLI2)
-        }
-    }
+function displayMatches() {
+    const userInput = this.value
+    const matchArray = findMatches(userInput, cities)
+    const html = matchArray.map(place => {
+        return `
+            <li>
+                <span class="name"><span class="hl">${place.city.split(userInput)}</span>${place.city}, ${place.state}</span>
+                <span class="population">${place.population}</span>
+            </li>
+        `
+    }).join("")
+    suggestions.innerHTML = html
+    // `<span class="hl">${place.city.split(`${this.value}`)[this.value.length]}</span>`
 }
+
+const searchInput = document.querySelector(".search")
+const suggestions = document.querySelector(".suggestions")
+
+searchInput.addEventListener('change', displayMatches)
+searchInput.addEventListener('keyup', displayMatches)
+
+// const searchForm = document.querySelector("input")
+// searchForm.onkeypress = searchCities
+// searchForm.onkeyup = validateSearch
+
+// function searchCities(event) {
+//     searchedCities = cities.filter(city => city.city.includes(searchForm.value))
+//     const cityList = document.querySelector("UL")
+//     cityList.textContent = ""
+//     searchedCities.forEach(city => {
+//         const newLI = document.createElement("LI")
+//         const cityName = document.createTextNode(city["city"] + " • " + city["population"])
+//         newLI.appendChild(cityName)
+//         cityList.appendChild(newLI)
+//     })
+// }
+
+// function validateSearch(event) {
+//     if(searchForm.value === "") {
+//         for(i = 0; i < 2; i++) {
+//             const cityList = document.querySelector("UL")
+//             const newLI1 = document.createElement("LI")
+//             const newLI2 = document.createElement("LI")
+//             const helpText1 = document.createTextNode("Filter for a city")
+//             const helpText2 = document.createTextNode("or a state")
+//             cityList.textContent = ""
+//             newLI1.appendChild(helpText1)
+//             cityList.appendChild(newLI1)
+//             newLI2.appendChild(helpText2)
+//             cityList.appendChild(newLI2)
+//         }
+//     }
+// }
 
 </script>
 </body>
