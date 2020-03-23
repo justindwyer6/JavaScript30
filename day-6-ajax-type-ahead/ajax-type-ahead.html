@@ -25,7 +25,7 @@ fetch(endpoint)
 
 const searchForm = document.querySelector("input")
 searchForm.onkeypress = searchCities
-// searchForm.onchange = searchCities
+searchForm.onkeyup = validateSearch
 
 function searchCities(event) {
     searchedCities = cities.filter(city => city.city.includes(searchForm.value))
@@ -33,28 +33,29 @@ function searchCities(event) {
     cityList.textContent = ""
     searchedCities.forEach(city => {
         const newLI = document.createElement("LI")
-        const cityName = document.createTextNode(city["city"])
+        const cityName = document.createTextNode(city["city"] + " • " + city["population"])
         newLI.appendChild(cityName)
         cityList.appendChild(newLI)
     })
-    if(searchForm.value === "") {
-        const newLI = document.createElement("LI")
-        const helpText = document.createTextNode("Filter for a city")
-        newLI.appendChild(helpText)
-        cityList.appendChild(newLI)
-    }
-    // cities.forEach(city =>
-    //     {
-    //         console.log(this)
-    //         if(city["city"].includes(this.value)){
-    //             const newLI = document.createElement("LI")
-    //             cityName = document.createTextNode(city["city"])
-    //             newLI.appendChild(cityName)
-    //             document.querySelector("ul").appendChild(newLI)
-    //         }
-    //     }
-    // )
 }
+
+function validateSearch(event) {
+    if(searchForm.value === "") {
+        for(i = 0; i < 2; i++) {
+            const cityList = document.querySelector("UL")
+            const newLI1 = document.createElement("LI")
+            const newLI2 = document.createElement("LI")
+            const helpText1 = document.createTextNode("Filter for a city")
+            const helpText2 = document.createTextNode("or a state")
+            cityList.textContent = ""
+            newLI1.appendChild(helpText1)
+            cityList.appendChild(newLI1)
+            newLI2.appendChild(helpText2)
+            cityList.appendChild(newLI2)
+        }
+    }
+}
+
 </script>
 </body>
 </html>
