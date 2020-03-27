@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Worthiness</title>
+  <style>
+      html {
+        color: transparent;
+        transition: all ease-out 5s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        font-size: 36px;
+      }
+      p {
+        text-align: center;
+        color: #000000;
+        opacity: 1;
+        transition: all ease-in-out 1s;
+      }
+  </style>
+</head>
+<body id="lookAtMeRightHerePleaseExpandMeIfYouWouldBeSoKind">
+  Thank you for expanding me. I feel much better. Now, click the tab above that says 'Console'.
+  <p>Hello. Please right-click somewhere below this text.</p>
+
+  <script>
+      const page = document.querySelector("html")
+      const body = document.querySelector("body")
+      const p = document.querySelector("p")
+
+      page.oncontextmenu = event => {
+        if (p.textContent !== "Excellent work. Now click 'Inspect' on the menu that appeared, then look closely.") {
+          function unworthy(){
+            console.error('%cYou are not worthy of the console, my friend.\nRefresh the page and try again, if you dare.', 'font-size:50px;')
+            worthinessStop()
+          }
+
+          const unworthyTimeout = setTimeout(unworthy, 30000)
+          p.style.opacity = "0"
+          setTimeout(() => {
+              p.style.opacity = "1"
+              p.textContent = "Excellent work. Now click 'Inspect' on the menu that appeared, then look closely."
+              setTimeout(() => {p.style.transition = "none"}, 500)
+            }, 1000)
+        }
+        setTimeout(() => {
+          console.warn('%cPlease wait... Your worthiness is being assessed by the console...', 'font-size: 30px;')
+        }, 10000)
+      }
+
+      body.onload = function() {
+      console.clear() // Making sure no weird console errors pop up.
+        console.log('%cWelcome to the Console — A realm of great power.', 'font-size:50px; background: green; text-shadow: 15px 10px 6px purple;')
+        console.log('%cTo prove your worth, type:', 'font-size:25px; background: green; text-shadow: 15px 10px 6px purple;')
+        console.log('%ctacos = \"yum\"', 'font-size:35px; background: green; text-shadow: 15px 10px 6px purple;')
+        console.log('%cQuickly, time is ticking...', 'font-size:15px; background: green; text-shadow: 15px 10px 6px purple;')
+      }
+
+      let tacos = ""
+
+      const worthinessCheck = setInterval(worthy, 1000)
+      function worthy() {
+        if (tacos === "yum") {
+          console.log('%cYou are worthy. Goodbye.', 'font-size:75px; background: green; text-shadow: 15px 10px 6px purple;')
+          console.log('%cThis window will self-destruct in 5 seconds.', 'font-size:12px; background: green; text-shadow: 15px 10px 6px purple;')
+          console.log('%cIgnore the errors that appear after this.', 'font-size:9px; background: green; text-shadow: 15px 10px 6px purple;')
+          setTimeout(function() {
+            console.clear()
+            p.textContent = ""
+            page.style.background = "#000000"
+          }, 5000)
+          worthinessStop()
+          unworthinessStop()
+        }
+      }
+      function worthinessStop() {
+        clearInterval(worthinessCheck)
+      }
+      function unworthinessStop() {
+        clearTimeout(unworthyTimeout)
+      }
+  </script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Console Tricks!</title>
+</head>
+<body>
+
+  <p onClick="makeGreen()">×BREAK×DOWN×</p>
+
+  <script>
+    const dogs = [{ name: 'Snickers', age: 2 }, { name: 'hugo', age: 8 }];
+
+    function makeGreen() {
+      const p = document.querySelector('p');
+      p.style.color = '#BADA55';
+      p.style.fontSize = '50px';
+      p.classList.add('nacho')
+    }
+
+    // Regular
+    console.log('Hello!')
+
+    // Interpolated
+    console.log('Hello, I am a %s string!', ':poop')
+    const taco = "nacho"
+    console.log(`Hello, I am a ${taco} string!`)
+
+    // Styled
+    console.log('%c Yes ', 'font-size:50px; background: red; text-shadow: 15px 10px 6px purple;')
+
+    // warning!
+    console.warn('THE SYSTEM IS DOWN')
+
+    // Error :|
+    console.error('WOOGUH WUHDOO WOOGUH')
+
+    // Info
+    console.info('You are beautiful inside and out.')
+
+    // Testing
+    console.assert(1 === 1, 'LIES')
+    console.assert(1 === 2, 'LIES')
+
+    const p = document.querySelector('p')
+
+    console.assert(p.classList.contains('ouch'), '¡Wrongo!')
+    console.assert(p.classList.contains('nacho'), '¡Wrongioso!')
+
+    // clearing
+    console.clear()
+
+    // Viewing DOM Elements
+    console.log(p)
+    console.dir(p)
+
+    console.clear()
+
+    // Grouping together
+    dogs.forEach(dog => {
+        console.groupCollapsed(`${dog.name}`)
+        console.log(`This is ${dog.name}`)
+        console.log(`${dog.name} is ${dog.age} years old`)
+        console.log(`${dog.name} is ${dog.age * 7} dog years old`)
+        console.groupEnd(`${dog.name}`)
+    })
+
+    // counting
+    console.count('Taco')
+    console.count('Taco')
+    console.count('Taco')
+    console.count('Taco')
+    console.count('Joe')
+    console.count('Taco')
+    console.count('Taco')
+    console.count('Joe')
+    console.count('Taco')
+
+    // timing
+    setTimeout(console.time('chillin'),300)
+    console.time('fetching data')
+    fetch('https://api.github.com/users/wesbos')
+    .then(data => {
+        console.timeEnd('fetching data')
+        console.log(data)
+    })
+    console.timeEnd('chillin')
+
+  </script>
+</body>
+</html>
