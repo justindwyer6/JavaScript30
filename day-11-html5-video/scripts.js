@@ -9,11 +9,27 @@ const ranges = player.querySelectorAll('.player__slider')
 
 // Build out functions
 function togglePlay() {
-  if(video.paused) {
-    video.play()
-  } else {
-    video.pause()
-  }
+  const method = video.paused ? 'play' : 'pause'
+  video[method]()
 }
 
-// Add event listeners
+function updateButton() {
+  const icon = this.paused ? '►' : '❚ ❚'
+  toggle.textContent = icon
+}
+
+function skip() {
+  console.log(video.currentTime)
+  console.log(this.dataset.skip)
+  video.currentTime += parseInt(this.dataset.skip)
+}
+
+/* Add event listeners */
+// Play on clicks
+video.addEventListener('click', togglePlay)
+toggle.addEventListener('click', togglePlay)
+// Update button on play
+video.addEventListener('play', updateButton)
+video.addEventListener('pause', updateButton)
+// Skip logic
+skipButtons.forEach(button => button.addEventListener('click', skip))
