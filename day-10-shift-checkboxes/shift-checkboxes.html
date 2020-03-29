@@ -127,18 +127,21 @@ function getCheckedBoxes() {
 function verifyIfChecked(event) {
     let checkSeries = false
     // let checkedBoxes = getCheckedBoxes()
-    for (i in checkboxes) {
-        if (checkboxes[i].checked) {
-            checkSeries = true
+    checkboxes.forEach((checkbox, index) => {
+        if (checkbox.checked) {
+            if (checkSeries === true) {
+                checkSeries = false
+            } else {
+                checkSeries = true
+            }
         }
         if (checkSeries === true) {
-            checkboxes[i].checked = true
+            checkbox.checked = true
         }
-        if (checkboxes[i] === this) {
+        if (checkbox === this) {
             checkSeries = false
-            break
         }
-    }
+    })
     // for (checkbox of checkboxes) {
     //     if (checkbox.checked) {
     //         checkSeries = true
