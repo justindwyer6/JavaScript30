@@ -96,66 +96,30 @@
   </div>
 
 <script>
-/*
-Look where focus is (maybe)
-Used checked attribute
-Loop through checkboxes
-checkbox.onshiftclick = checkbox.each(if (this.ischecked) {check next until })....
-find current, find next/previous checked, loop through all in between
-
-checked
-this
-checkSeries
-
-if this.index > checkbox.index
-
-*/
 
 const checkboxes = document.querySelectorAll("input[type='checkbox']")
-let checkedIndexes = []
-
-function getCheckedBoxes() {
-    checkedIndexes = []
-    checkboxes.forEach((checkbox, index) => {
-        if (checkbox !== this) {
-            if (checkbox.checked) {
-                checkedIndexes.push(checkbox)
-            }
-        }
-    })
-    console.log(checkedIndexes)
-    return checkedIndexes
-}
 
 function verifyIfChecked(event) {
     let checkSeries = false
-    let checkedBoxes = getCheckedBoxes()
-    console.log(checkedBoxes)
     for (checkbox of checkboxes) {
+        if (checkSeries) {
+            if (!checkbox.checked) {
+                console.log(checkbox.checked)
+                checkbox.checked = true
+                checkSeries = false
+            } else {
+                console.log("y u no end")
+                break
+            }
+        }
         if (checkbox.checked) {
             checkSeries === true ? checkSeries = false : checkSeries = true
-        }
-        if (checkSeries === true) {
-            checkbox.checked = true
         }
         if (checkbox === this) {
             checkSeries = false
             break
         }
     }
-    // for (checkbox of checkboxes) {
-    //     if (checkbox.checked) {
-    //         checkSeries = true
-    //     }
-    //     if (checkSeries === true) {
-    //         checkbox.checked = true
-    //     }
-    //     if (index > this)
-    //     if (checkbox === this) {
-    //         checkSeries = false
-    //         break
-    //     }
-    // }
 }
 
 function multiCheck(event) {
@@ -168,7 +132,6 @@ function multiCheck(event) {
 checkboxes.forEach(checkbox => {
     checkbox.addEventListener("click", multiCheck)
 })
-
 
 </script>
 </body>
