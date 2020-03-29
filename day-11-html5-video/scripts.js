@@ -6,6 +6,9 @@ const progressBar = player.querySelector('.progress__filled')
 const toggle = player.querySelector('.toggle')
 const skipButtons = player.querySelectorAll('[data-skip]')
 const ranges = player.querySelectorAll('.player__slider')
+const fullscreenButton = player.querySelector('.fullscreen')
+const muteButton = player.querySelector('.mute')
+const speedButton = player.querySelector('.speed')
 
 /* Build out functions */
 function togglePlay() {
@@ -36,19 +39,45 @@ function scrub(e) {
   video.currentTime = scrubTime
 }
 
+function goFullscreen() {
+  video.requestFullscreen()
+}
+
+function muteVideo() {
+  if (video.volume !== 0) {
+    video.volume = 0
+    this.textContent = "Unmute"
+  } else {
+    video.volume = 1
+    this.textContent = "Mute"
+  }
+}
+
+function defaultSpeed() {
+  video['playbackRate'] = 1
+}
+
 /* Add event listeners */
 
 // Play on clicks
 video.addEventListener('click', togglePlay)
 toggle.addEventListener('click', togglePlay)
+
 // Update button on play
 video.addEventListener('play', updateButton)
 video.addEventListener('pause', updateButton)
+
 // Skip logic
 skipButtons.forEach(button => button.addEventListener('click', skip))
+
 // Speed and Volume Sliders
 ranges.forEach(button => button.addEventListener('change', handleRangeUpdate))
 ranges.forEach(button => button.addEventListener('mousemove', handleRangeUpdate))
+
+// Mute and Default Speed
+muteButton.addEventListener('click', muteVideo)
+speedButton.addEventListener('click', defaultSpeed)
+
 // Video Progress Indicator/Scubber
 video.addEventListener('timeupdate', handleProgress)
 
@@ -57,3 +86,6 @@ progress.addEventListener('click', scrub)
 progress.addEventListener('mousemove', (e) => mousedown && scrub(e))
 progress.addEventListener('mousedown', () => mousedown = true)
 progress.addEventListener('mouseup', () => mousedown = false)
+
+// Fullscreen
+fullscreenButton.addEventListener('click', goFullscreen)
