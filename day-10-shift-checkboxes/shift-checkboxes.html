@@ -115,18 +115,22 @@ const checkboxes = document.querySelectorAll("input[type='checkbox']")
 let checkedIndexes = []
 
 function getCheckedBoxes() {
+    checkedIndexes = []
     checkboxes.forEach((checkbox, index) => {
-        if (checkbox.checked) {
-            checkedIndexes.push()
+        if (checkbox !== this) {
+            if (checkbox.checked) {
+                checkedIndexes.push(checkbox)
+            }
         }
-        console.log(checkedIndexes)
-        return checkedIndexes
     })
+    console.log(checkedIndexes)
+    return checkedIndexes
 }
 
 function verifyIfChecked(event) {
     let checkSeries = false
-    // let checkedBoxes = getCheckedBoxes()
+    let checkedBoxes = getCheckedBoxes()
+    console.log(checkedBoxes)
     for (checkbox of checkboxes) {
         if (checkbox.checked) {
             checkSeries === true ? checkSeries = false : checkSeries = true
