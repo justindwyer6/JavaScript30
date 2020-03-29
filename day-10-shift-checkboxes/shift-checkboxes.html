@@ -127,39 +127,35 @@ function getCheckedBoxes() {
 function verifyIfChecked(event) {
     let checkSeries = false
     // let checkedBoxes = getCheckedBoxes()
-    // error = console.error("Not an error.")
-    // checkboxes.forEach((checkbox, index) => {
-    //     try {
-    //         if (checkbox.checked) {
-    //             checkSeries = true
-    //         }
-    //         if (checkSeries === true) {
-    //             checkbox.checked = true
-    //         }
-    //         if (checkbox === this) {
-    //             checkSeries = false
-    //             throw error
-    //         }
-    //     }
-    //     catch (err) {
-    //         break
-    //     }
-    // })
-    for (checkbox of checkboxes) {
-        if (checkbox.checked) {
+    for (i in checkboxes) {
+        if (checkboxes[i].checked) {
             checkSeries = true
         }
         if (checkSeries === true) {
-            checkbox.checked = true
+            checkboxes[i].checked = true
         }
-        if (checkbox === this) {
+        if (checkboxes[i] === this) {
             checkSeries = false
             break
         }
     }
+    // for (checkbox of checkboxes) {
+    //     if (checkbox.checked) {
+    //         checkSeries = true
+    //     }
+    //     if (checkSeries === true) {
+    //         checkbox.checked = true
+    //     }
+    //     if (index > this)
+    //     if (checkbox === this) {
+    //         checkSeries = false
+    //         break
+    //     }
+    // }
 }
 
 function multiCheck(event) {
+    console.log(event)
     if (event.shiftKey) {
         verifyIfChecked.call(this, event)
     }
