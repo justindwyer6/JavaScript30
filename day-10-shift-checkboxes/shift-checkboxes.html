@@ -102,34 +102,44 @@ Used checked attribute
 Loop through checkboxes
 checkbox.onshiftclick = checkbox.each(if (this.ischecked) {check next until })....
 find current, find next/previous checked, loop through all in between
+
+checked
+this
+checkSeries
+
+
 */
 
 const checkboxes = document.querySelectorAll("input[type='checkbox']")
 
-function verifyIfChecked(event) {
-    console.log(this)
+function getCheckboxStates() {
     checkboxes.forEach((checkbox, index) => {
-        console.log(this)
-        checkSeries = false
+        let lastChecked
+        if (checkbox.checked) {
+            lastChecked = index
+        }
+    })
+}
+
+function verifyIfChecked(event) {
+    let checkSeries = false
+    getCheckboxStates()
+    checkboxes.forEach((checkbox, index) => {
         if (checkbox.checked) {
             checkSeries = true
         }
-        else if (checkbox === this) {
-            checkSeries = false
+        if (checkSeries === true) {
+            checkbox.checked = true
         }
-        else {
-            if (checkSeries === true) {
-                checkbox.checked = true
-            }
+        if (checkbox === this) {
+            checkSeries = false
         }
     })
 }
 
 function multiCheck(event) {
-    console.log(this)
     if (event.shiftKey) {
         verifyIfChecked.call(this, event)
-        // test()
     }
 }
 
