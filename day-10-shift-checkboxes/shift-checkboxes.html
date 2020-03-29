@@ -107,23 +107,24 @@ checked
 this
 checkSeries
 
-
 */
 
 const checkboxes = document.querySelectorAll("input[type='checkbox']")
+let checkedIndexes = []
 
-function getCheckboxStates() {
+function getCheckedBoxes() {
     checkboxes.forEach((checkbox, index) => {
-        let lastChecked
         if (checkbox.checked) {
-            lastChecked = index
+            checkedIndexes.push()
         }
+        console.log(checkedIndexes)
+        return checkedIndexes
     })
 }
 
 function verifyIfChecked(event) {
     let checkSeries = false
-    getCheckboxStates()
+    let checkBoxes = getCheckedBoxes()
     checkboxes.forEach((checkbox, index) => {
         if (checkbox.checked) {
             checkSeries = true
