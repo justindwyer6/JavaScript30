@@ -19,9 +19,16 @@ function updateButton() {
 }
 
 function skip() {
-  console.log(video.currentTime)
-  console.log(this.dataset.skip)
-  video.currentTime += parseInt(this.dataset.skip)
+  video.currentTime += parseFloat(this.dataset.skip)
+}
+
+function handleRangeUpdate() {
+  video[this.name] = this.value
+}
+
+function handleProgress() {
+  const percent = (video.currentTime / video.duration) * 100;
+  progressBar.style.flexBasis = `${percent}%`;
 }
 
 /* Add event listeners */
@@ -33,3 +40,5 @@ video.addEventListener('play', updateButton)
 video.addEventListener('pause', updateButton)
 // Skip logic
 skipButtons.forEach(button => button.addEventListener('click', skip))
+ranges.forEach(button => button.addEventListener('change', handleRangeUpdate))
+ranges.forEach(button => button.addEventListener('mousemove', handleRangeUpdate))
