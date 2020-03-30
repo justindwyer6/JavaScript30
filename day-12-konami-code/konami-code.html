@@ -18,7 +18,8 @@ function konamiCode(e) {
       codesEntered = []
     }
     if (codesEntered[10] === codesToMatch[10]) {
-      console.log("nailed it")
+      console.log("NAILED IT")
+      cornify_add()
       codesEntered = []
     }
   } else {
@@ -26,8 +27,8 @@ function konamiCode(e) {
   }
 }
 
-const body = document.querySelector("body")
-body.addEventListener("keyup", konamiCode)
+window.addEventListener("keyup", konamiCode)
+window.addEventListener("click", cornify_add)
 
 </script>
 </body>
